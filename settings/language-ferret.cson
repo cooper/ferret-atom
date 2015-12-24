@@ -1,0 +1,7 @@
+'.source.ferret':
+  'editor':
+    'foldEndPattern': '(\\*/|^\\s*(\\}|\\]|\\)))'
+    'increaseIndentPattern': '^.*\\{\\}?\\s*$'
+    'decreaseIndentPattern': '^\\s*\\}'
+    'commentStart': '# '
+    'nonWordCharacters': '/\\()"\':,.;<>~!#^&*|+=[]{}`?-'

@@ -1,19 +1,19 @@
 {
-  "name": "language-perl",
+  "name": "language-ferret",
   "version": "0.32.0",
-  "description": "Perl language support in Atom",
+  "description": "Ferret language support in Atom",
   "engines": {
     "atom": "*",
     "node": "*"
   },
-  "homepage": "http://atom.github.io/language-perl",
+  "homepage": "http://github.com/cooper/language-ferret",
   "repository": {
     "type": "git",
-    "url": "https://github.com/atom/language-perl.git"
+    "url": "https://github.com/cooper/language-ferret.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/atom/language-perl/issues"
+    "url": "https://github.com/atom/language-ferret/issues"
   },
   "devDependencies": {
     "coffeelint": "^1.10.1"

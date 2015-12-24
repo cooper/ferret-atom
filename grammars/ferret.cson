@@ -1,0 +1,334 @@
+'scopeName': 'source.ferret'
+'name': 'ferret'
+'fileTypes': [
+  'frt'
+]
+'firstLineMatch': '^#!.*\\bferret\\b'
+'patterns': [
+  {
+    'include': '#line_comment'
+  }
+  {
+    'include': '#variable'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'constant.other.key.ferret'
+    'match': '\\b(\\w+)\\s*(?==>)'
+  }
+  {
+    'match': '(?<={)\\s*\\w+\\s*(?=})'
+    'name': 'constant.other.bareword.ferret'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'keyword.control.ferret'
+      '2':
+        'name': 'entity.name.type.class.ferret'
+    'match': '^\\s*(package|class)\\s+([^\\s;]+)'
+    'name': 'meta.class.ferret'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'storage.type.func.ferret'
+      '2':
+        'name': 'entity.name.function.ferret'
+      '3':
+        'name': 'storage.type.method.ferret'
+    'match': '\\b(func|method)(?:\\s+([-a-zA-Z0-9_]+))?\\s*[^\\w\\{]'
+    'name': 'meta.function.ferret'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'entity.name.function.ferret'
+      '2':
+        'name': 'punctuation.definition.parameters.ferret'
+      '3':
+        'name': 'variable.parameter.function.ferret'
+    'match': '^\\s*(init|on|inside)\\b'
+    'name': 'meta.function.ferret'
+  }
+  {
+    'begin': '^(?=(\\t| {4}))'
+    'end': '(?=[^\\t\\s])'
+    'name': 'meta.leading-tabs'
+    'patterns': [
+      {
+        'captures':
+          '1':
+            'name': 'meta.odd-tab'
+          '2':
+            'name': 'meta.even-tab'
+        'match': '(\\t| {4})(\\t| {4})?'
+      }
+    ]
+  }
+  {
+    'match': '\\b(__FILE__|__LINE__|__PACKAGE__)\\b'
+    'name': 'constant.language.ferret'
+  }
+  {
+    'begin': '\\b(__DATA__|__END__)\\n?'
+    'captures':
+      '1':
+        'name': 'constant.language.ferret'
+    'contentName': 'text.embedded.ferret'
+  }
+  {
+    'match': '(?<!->)\\b(continue|do|else|for|if|last|next|redo|return|until|while|switch|case)\\b'
+    'name': 'keyword.control.ferret'
+  }
+  {
+    'match': '\\b(want|need|share|local)\\b'
+    'name': 'storage.modifier.ferret'
+  }
+  {
+    'match': '(<=>|->)'
+    'name': 'keyword.operator.comparison.ferret'
+  }
+  {
+    'begin': '"'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.ferret'
+    'end': '"'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.ferret'
+    'name': 'string.quoted.double.ferret'
+    'patterns': [
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#variable'
+      }
+    ]
+  }
+  {
+    'begin': '\''
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.ferret'
+    'end': '\''
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.ferret'
+    'name': 'string.quoted.single.ferret'
+    'patterns': [
+      {
+        'match': '\\\\[\'\\\\]'
+        'name': 'constant.character.escape.ferret'
+      }
+    ]
+  }
+  # {
+  #   'match': '\\b(x)\\s*(\\d+)\\b'
+  #   'captures':
+  #     '1':
+  #       'name': 'support.function.ferret'
+  #     '2':
+  #       'name': 'entity.name.function.ferret'
+  # }
+  # {
+  #   'match': '\\b(ARGV|DATA|ENV|SIG|STDERR|STDIN|STDOUT|atan2|bind|binmode|bless|caller|chdir|chmod|chomp|chop|chown|chr|chroot|close|closedir|cmp|connect|cos|crypt|dbmclose|dbmopen|defined|delete|dump|each|endgrent|endhostent|endnetent|endprotoent|endpwent|endservent|eof|eq|eval|exec|exists|exp|fcntl|fileno|flock|fork|formline|ge|getc|getgrent|getgrgid|getgrnam|gethostbyaddr|gethostbyname|gethostent|getlogin|getnetbyaddr|getnetbyname|getnetent|getpeername|getpgrp|getppid|getpriority|getprotobyname|getprotobynumber|getprotoent|getpwent|getpwnam|getpwuid|getservbyname|getservbyport|getservent|getsockname|getsockopt|glob|gmtime|grep|gt|hex|import|index|int|ioctl|join|keys|kill|lc|lcfirst|le|length|link|listen|local|localtime|log|lstat|lt|m|map|mkdir|msgctl|msgget|msgrcv|msgsnd|ne|no|oct|open|opendir|ord|pack|pipe|pop|pos|print|printf|push|quotemeta|rand|read|readdir|readlink|recv|ref|rename|reset|reverse|rewinddir|rindex|rmdir|s|scalar|seek|seekdir|semctl|semget|semop|send|setgrent|sethostent|setnetent|setpgrp|setpriority|setprotoent|setpwent|setservent|setsockopt|shift|shmctl|shmget|shmread|shmwrite|shutdown|sin|sleep|socket|socketpair|sort|splice|split|sprintf|sqrt|srand|stat|study|substr|symlink|syscall|sysopen|sysread|system|syswrite|tell|telldir|tie|tied|time|times|tr|truncate|uc|ucfirst|umask|undef|unlink|unpack|unshift|untie|utime|values|vec|waitpid|wantarray|warn|write|y)\\b'
+  #   'name': 'support.function.ferret'
+  # }
+]
+'repository':
+  'escaped_char':
+    'patterns': [
+      {
+        'match': '\\\\\\d+'
+        'name': 'constant.character.escape.ferret'
+      }
+      {
+        'match': '\\\\c[^\\s\\\\]'
+        'name': 'constant.character.escape.ferret'
+      }
+      {
+        'match': '\\\\g(?:\\{(?:\\w*|-\\d+)\\}|\\d+)'
+        'name': 'constant.character.escape.ferret'
+      }
+      {
+        'match': '\\\\k(?:\\{\\w*\\}|<\\w*>|\'\\w*\')'
+        'name': 'constant.character.escape.ferret'
+      }
+      {
+        'match': '\\\\N\\{[^\\}]*\\}'
+        'name': 'constant.character.escape.ferret'
+      }
+      {
+        'match': '\\\\o\\{\\d*\\}'
+        'name': 'constant.character.escape.ferret'
+      }
+      {
+        'match': '\\\\(?:p|P)(?:\\{\\w*\\}|P)'
+        'name': 'constant.character.escape.ferret'
+      }
+      {
+        'match': '\\\\x(?:[0-9a-zA-Z]{2}|\\{\\w*\\})?'
+        'name': 'constant.character.escape.ferret'
+      }
+      {
+        'match': '\\\\.'
+        'name': 'constant.character.escape.ferret'
+      }
+    ]
+  'line_comment':
+    'patterns': [
+      {
+        'begin': '(^[ \\t]+)?(?=#)'
+        'beginCaptures':
+          '1':
+            'name': 'punctuation.whitespace.comment.leading.ferret'
+        'end': '(?!\\G)'
+        'patterns': [
+          {
+            'begin': '#'
+            'beginCaptures':
+              '0':
+                'name': 'punctuation.definition.comment.ferret'
+            'end': '\\n'
+            'name': 'comment.line.number-sign.ferret'
+          }
+        ]
+      }
+    ]
+  'nested_braces':
+    'begin': '\\{'
+    'captures':
+      '1':
+        'name': 'punctuation.section.scope.ferret'
+    'end': '\\}'
+    'patterns': [
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#nested_braces'
+      }
+    ]
+  'nested_braces_interpolated':
+    'begin': '\\{'
+    'captures':
+      '1':
+        'name': 'punctuation.section.scope.ferret'
+    'end': '\\}'
+    'patterns': [
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#variable'
+      }
+      {
+        'include': '#nested_braces_interpolated'
+      }
+    ]
+  'nested_brackets':
+    'begin': '\\['
+    'captures':
+      '1':
+        'name': 'punctuation.section.scope.ferret'
+    'end': '\\]'
+    'patterns': [
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#nested_brackets'
+      }
+    ]
+  'nested_brackets_interpolated':
+    'begin': '\\['
+    'captures':
+      '1':
+        'name': 'punctuation.section.scope.ferret'
+    'end': '\\]'
+    'patterns': [
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#variable'
+      }
+      {
+        'include': '#nested_brackets_interpolated'
+      }
+    ]
+  'nested_ltgt':
+    'begin': '<'
+    'captures':
+      '1':
+        'name': 'punctuation.section.scope.ferret'
+    'end': '>'
+    'patterns': [
+      {
+        'include': '#nested_ltgt'
+      }
+    ]
+  'nested_ltgt_interpolated':
+    'begin': '<'
+    'captures':
+      '1':
+        'name': 'punctuation.section.scope.ferret'
+    'end': '>'
+    'patterns': [
+      {
+        'include': '#variable'
+      }
+      {
+        'include': '#nested_ltgt_interpolated'
+      }
+    ]
+  'nested_parens':
+    'begin': '\\('
+    'captures':
+      '1':
+        'name': 'punctuation.section.scope.ferret'
+    'end': '\\)'
+    'patterns': [
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#nested_parens'
+      }
+    ]
+  'nested_parens_interpolated':
+    'begin': '\\('
+    'captures':
+      '1':
+        'name': 'punctuation.section.scope.ferret'
+    'end': '\\)'
+    'patterns': [
+      {
+        'comment': 'This is to prevent thinks like qr/foo$/ to treat $/ as a variable'
+        'match': '\\$(?=[^\\s\\w\\\'\\{\\[\\(\\<])'
+        'name': 'keyword.control.anchor.ferret'
+      }
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#variable'
+      }
+      {
+        'include': '#nested_parens_interpolated'
+      }
+    ]
+  'variable':
+    'patterns': [
+      {
+        'captures':
+          '1':
+            'name': 'punctuation.definition.variable.ferret'
+        'match': '([\\$\\@\\%](#)?)([a-zA-Zx7f-xff\\$]|::)([a-zA-Z0-9_x7f-xff\\$]|::)*\\b'
+        'name': 'variable.other.readwrite.global.ferret'
+      }
+    ]
