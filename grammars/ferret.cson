@@ -1,5 +1,5 @@
 'scopeName': 'source.ferret'
-'name': 'ferret'
+'name': 'Ferret'
 'fileTypes': [
   'frt'
 ]
@@ -10,9 +10,6 @@
   }
   {
     'include': '#variable'
-  }
-  {
-    'include': '#property_period'
   }
   {
     'comment': 'Object/hash keys'
@@ -184,7 +181,7 @@
     'name': 'support.class.ferret'
   }
   {
-    'match': '(\\.)?(shift|unshift|pop|push|connect|proto)\\b(?=\\()'
+    'match': '(\\.)?(shift|unshift|pop|push|connect|proto|print|println|say|close)\\b(?=\\()'
     'captures':
       '1':
         'name': 'meta.delimiter.method.period.ferret'
@@ -260,16 +257,6 @@
         ]
       }
     ]
-  'property_period':
-   'patterns': [
-      {
-        'comment': '`prop` in `obj.prop`, `func().prop`'
-        'match': '(\\.)(?:(\\b\\d\\w*)|([A-Z][A-Z0-9_$]*\\b\\$*)|([\\w$]*))'
-        'captures':
-          '1':
-            'name': 'meta.delimiter.property.period.ferret'
-      }
-   ]
   'variable_with_property':
     'patterns': [
       {
