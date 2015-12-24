@@ -12,6 +12,9 @@
     'include': '#variable'
   }
   {
+    'include': '#properties'
+  }
+  {
     'comment': 'Object/hash keys and return pair keys'
     'captures':
       '1':
@@ -163,10 +166,31 @@
   }
   {
     'comment': 'Mark as method separator if double colons not followed by capital letter'
-    'match': '(\\.|::)\\s*(?![A-Z])'
+    'match': '(::)\\s*(?![A-Z])'
     'captures':
       '1':
         'name': 'punctuation.separator.method.ferret'
+  }
+  {
+    'comment': 'Matches non-namespace words starting with a capital letter (class/type names)'
+    'match': '(?<!\\$)\\b([A-Z]+[_a-zA-Z0-9_x7f-xff\\$]*)\\b'
+    'name': 'support.class.ferret'
+  }
+  {
+    'match': '(\\.)?(shift|unshift|pop|push|connect|proto)\\b(?=\\()'
+    'captures':
+      '1':
+        'name': 'meta.delimiter.method.period.ferret'
+      '2':
+        'name': 'support.function.ferret'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'punctuation.definition.constant.ferret'
+    'comment': 'symbols'
+    'match': '(?<!:)(:)(?>[$a-zA-Z_]\\w*(?>[?!]|=(?![>=]))?|===?|<=>|>[>=]?|<[<=]?|[%&`/\\|]|\\*\\*?|=?~|[-+]@?|\\[\\]=?|@@?[a-zA-Z_]\\w*)'
+    'name': 'constant.other.symbol.ferret'
   }
 ]
 'repository':
@@ -229,183 +253,44 @@
         ]
       }
     ]
-  'nested_braces':
-    'begin': '\\{'
-    'captures':
-      '1':
-        'name': 'punctuation.section.scope.ferret'
-    'end': '\\}'
-    'patterns': [
-      {
-        'include': '#escaped_char'
-      }
-      {
-        'include': '#nested_braces'
-      }
-    ]
-  'nested_braces_interpolated':
-    'begin': '\\{'
-    'captures':
-      '1':
-        'name': 'punctuation.section.scope.ferret'
-    'end': '\\}'
-    'patterns': [
-      {
-        'include': '#escaped_char'
-      }
-      {
-        'include': '#variable'
-      }
-      {
-        'include': '#nested_braces_interpolated'
-      }
-    ]
-  'nested_brackets':
-    'begin': '\\['
-    'captures':
-      '1':
-        'name': 'punctuation.section.scope.ferret'
-    'end': '\\]'
-    'patterns': [
-      {
-        'include': '#escaped_char'
-      }
-      {
-        'include': '#nested_brackets'
-      }
-    ]
-  'nested_brackets_interpolated':
-    'begin': '\\['
-    'captures':
-      '1':
-        'name': 'punctuation.section.scope.ferret'
-    'end': '\\]'
-    'patterns': [
-      {
-        'include': '#escaped_char'
-      }
-      {
-        'include': '#variable'
-      }
-      {
-        'include': '#nested_brackets_interpolated'
-      }
-    ]
-  'nested_ltgt':
-    'begin': '<'
-    'captures':
-      '1':
-        'name': 'punctuation.section.scope.ferret'
-    'end': '>'
-    'patterns': [
-      {
-        'include': '#nested_ltgt'
-      }
-    ]
-  'nested_ltgt_interpolated':
-    'begin': '<'
-    'captures':
-      '1':
-        'name': 'punctuation.section.scope.ferret'
-    'end': '>'
-    'patterns': [
-      {
-        'include': '#variable'
-      }
-      {
-        'include': '#nested_ltgt_interpolated'
-      }
-    ]
-  'nested_parens':
-    'begin': '\\('
-    'captures':
-      '1':
-        'name': 'punctuation.section.scope.ferret'
-    'end': '\\)'
-    'patterns': [
-      {
-        'include': '#escaped_char'
-      }
-      {
-        'include': '#nested_parens'
-      }
-    ]
-  'nested_parens_interpolated':
-    'begin': '\\('
-    'captures':
-      '1':
-        'name': 'punctuation.section.scope.ferret'
-    'end': '\\)'
-    'patterns': [
-      {
-        'include': '#escaped_char'
-      }
-      {
-        'include': '#variable'
-      }
-      {
-        'include': '#nested_parens_interpolated'
-      }
-    ]
   'properties':
-    'patterns': [
+   'patterns': [
       {
         'comment': '`prop` in `obj.prop`, `func().prop`'
-        'match': '(\\.)\\s*(?:(\\b\\d\\w*)|([A-Z][A-Z0-9_$]*\\b\\$*)|([\\w$]*))'
+        'match': '(\\.)(?:(\\b\\d\\w*)|([A-Z][A-Z0-9_$]*\\b\\$*)|([\\w$]*))'
         'captures':
           '1':
             'name': 'meta.delimiter.property.period.ferret'
-          '3':
-            'name': 'constant.other.property.ferret'
-          '4':
-            'name': 'variable.other.property.ferret'
+        # these are disabled because we don't want properties highlighted
+        #   '2':
+        #     'name': 'constant.other.property.ferret'
+        #   '3':
+        #     'name': 'constant.other.property.ferret'
+        #   '4':
+        #     'name': 'variable.other.property.ferret'
       }
-    ]
-  'storage_types':
-    'patterns': [
-      {
-        'match': '\\bBool\\b'
-        'name': 'storage.type.boolean.ferret'
-      }
-      {
-        'match': '\\b(Object|Obj|Hash|List|Set)\\b'
-        'name': 'storage.type.collection.ferret'
-      }
-      {
-        'match': '\\b(Error|Err)\\b'
-        'name': 'storage.type.error.ferret'
-      }
-      {
-        'match': '\\b(String|Str)\\b'
-        'name': 'storage.type.string.ferret'
-      }
-      {
-        'match': '\\b(Number|Num)\\b'
-        'name': 'storage.type.numeric.ferret'
-      }
-
-    ]
+   ]
   'variable':
     'patterns': [
       {
         'captures':
           '1':
             'name': 'punctuation.definition.variable.ferret'
-        'match': '(@)([a-zA-Zx7f-xff\\$])([a-zA-Z0-9_x7f-xff\\$])*\\b'
+        'match': '(@)([_a-zA-Zx7f-xff\\$])([_a-zA-Z0-9_x7f-xff\\$])*\\b'
         'name': 'variable.other.readwrite.instance.ferret'
       }
       {
         'captures':
           '1':
             'name': 'punctuation.definition.variable.ferret'
-        'match': '(\\$)([a-zA-Zx7f-xff\\$])([a-zA-Z0-9_x7f-xff\\$])*\\b'
+        'match': '(\\$)([_a-zA-Zx7f-xff\\$])([_a-zA-Z0-9_x7f-xff\\$])*\\b'
         'name': 'variable.other.readwrite.global.ferret'
       }
       {
         'captures':
           '1':
             'name': 'punctuation.definition.variable.ferret'
-        'match': '(\\*)([a-zA-Zx7f-xff\\$])([a-zA-Z0-9_x7f-xff\\$])*\\b'
+        'match': '(\\*)([_a-zA-Zx7f-xff\\$])([_a-zA-Z0-9_x7f-xff\\$])*\\b'
         'name': 'variable.other.readwrite.special.ferret'
       }
     ]
