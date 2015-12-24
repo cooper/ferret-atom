@@ -12,10 +12,11 @@
     'include': '#variable'
   }
   {
+    'comment': 'Object/hash keys and return pair keys'
     'captures':
       '1':
         'name': 'constant.other.key.ferret'
-    'match': '\\b(\\w+)\\s*(?==>)'
+    'match': '\\b(\\w+)\\s*(?=(?:\\:|->))'
   }
   {
     'match': '(?<={)\\s*\\w+\\s*(?=})'
@@ -27,8 +28,17 @@
         'name': 'keyword.control.ferret'
       '2':
         'name': 'entity.name.type.class.ferret'
-    'match': '^\\s*(package|class)\\s+([^\\s;]+)'
+    'match': '^\\s*(class)\\s+([^\\s;]+)'
     'name': 'meta.class.ferret'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'keyword.control.ferret'
+      '2':
+        'name': 'entity.name.type.class.ferret'
+    'match': '^\\s*(package)\\s+([^\\s;]+)'
+    'name': 'meta.module.ferret'
   }
   {
     'captures':
@@ -36,19 +46,13 @@
         'name': 'storage.type.func.ferret'
       '2':
         'name': 'entity.name.function.ferret'
-      '3':
-        'name': 'storage.type.method.ferret'
     'match': '\\b(func|method)(?:\\s+([-a-zA-Z0-9_]+))?\\s*[^\\w\\{]'
     'name': 'meta.function.ferret'
   }
   {
     'captures':
       '1':
-        'name': 'entity.name.function.ferret'
-      '2':
-        'name': 'punctuation.definition.parameters.ferret'
-      '3':
-        'name': 'variable.parameter.function.ferret'
+        'name': 'storage.type.func.ferret'
     'match': '^\\s*(init|on|inside)\\b'
     'name': 'meta.function.ferret'
   }
@@ -66,6 +70,18 @@
         'match': '(\\t| {4})(\\t| {4})?'
       }
     ]
+  }
+  {
+    'match': '(?<!\\.)\\b(true|false)(?!\\s*:)\\b|(?<=\\?)(?:\\s*)(true|false)(?=\\s*:)'
+    'captures':
+      '1':
+        'name': 'constant.language.boolean.$1.ferret'
+      '2':
+        'name': 'constant.language.boolean.$2.ferret'
+  }
+  {
+    'match': '\\b(undefined)\\b'
+    'name': 'constant.language.ferret'
   }
   {
     'match': '\\b(__FILE__|__LINE__|__PACKAGE__)\\b'
@@ -126,18 +142,32 @@
       }
     ]
   }
-  # {
-  #   'match': '\\b(x)\\s*(\\d+)\\b'
-  #   'captures':
-  #     '1':
-  #       'name': 'support.function.ferret'
-  #     '2':
-  #       'name': 'entity.name.function.ferret'
-  # }
-  # {
-  #   'match': '\\b(ARGV|DATA|ENV|SIG|STDERR|STDIN|STDOUT|atan2|bind|binmode|bless|caller|chdir|chmod|chomp|chop|chown|chr|chroot|close|closedir|cmp|connect|cos|crypt|dbmclose|dbmopen|defined|delete|dump|each|endgrent|endhostent|endnetent|endprotoent|endpwent|endservent|eof|eq|eval|exec|exists|exp|fcntl|fileno|flock|fork|formline|ge|getc|getgrent|getgrgid|getgrnam|gethostbyaddr|gethostbyname|gethostent|getlogin|getnetbyaddr|getnetbyname|getnetent|getpeername|getpgrp|getppid|getpriority|getprotobyname|getprotobynumber|getprotoent|getpwent|getpwnam|getpwuid|getservbyname|getservbyport|getservent|getsockname|getsockopt|glob|gmtime|grep|gt|hex|import|index|int|ioctl|join|keys|kill|lc|lcfirst|le|length|link|listen|local|localtime|log|lstat|lt|m|map|mkdir|msgctl|msgget|msgrcv|msgsnd|ne|no|oct|open|opendir|ord|pack|pipe|pop|pos|print|printf|push|quotemeta|rand|read|readdir|readlink|recv|ref|rename|reset|reverse|rewinddir|rindex|rmdir|s|scalar|seek|seekdir|semctl|semget|semop|send|setgrent|sethostent|setnetent|setpgrp|setpriority|setprotoent|setpwent|setservent|setsockopt|shift|shmctl|shmget|shmread|shmwrite|shutdown|sin|sleep|socket|socketpair|sort|splice|split|sprintf|sqrt|srand|stat|study|substr|symlink|syscall|sysopen|sysread|system|syswrite|tell|telldir|tie|tied|time|times|tr|truncate|uc|ucfirst|umask|undef|unlink|unpack|unshift|untie|utime|values|vec|waitpid|wantarray|warn|write|y)\\b'
-  #   'name': 'support.function.ferret'
-  # }
+  {
+    'match': '\\b(x)\\s*(\\d+)\\b'
+    'captures':
+      '1':
+        'name': 'support.function.ferret'
+      '2':
+        'name': 'entity.name.function.ferret'
+  }
+  {
+    'match': '\\b(dump|inspect|copy|say|print)\\b'
+    'name': 'support.function.ferret'
+  }
+  {
+    'comment': 'Mark as namespace separator if double colons followed by capital letter'
+    'match': '(::)\\s*(?=[A-Z])'
+    'captures':
+      '1':
+        'name': 'punctuation.separator.namespace.ferret'
+  }
+  {
+    'comment': 'Mark as method separator if double colons not followed by capital letter'
+    'match': '(\\.|::)\\s*(?![A-Z])'
+    'captures':
+      '1':
+        'name': 'punctuation.separator.method.ferret'
+  }
 ]
 'repository':
   'escaped_char':
@@ -308,11 +338,6 @@
     'end': '\\)'
     'patterns': [
       {
-        'comment': 'This is to prevent thinks like qr/foo$/ to treat $/ as a variable'
-        'match': '\\$(?=[^\\s\\w\\\'\\{\\[\\(\\<])'
-        'name': 'keyword.control.anchor.ferret'
-      }
-      {
         'include': '#escaped_char'
       }
       {
@@ -322,13 +347,65 @@
         'include': '#nested_parens_interpolated'
       }
     ]
+  'properties':
+    'patterns': [
+      {
+        'comment': '`prop` in `obj.prop`, `func().prop`'
+        'match': '(\\.)\\s*(?:(\\b\\d\\w*)|([A-Z][A-Z0-9_$]*\\b\\$*)|([\\w$]*))'
+        'captures':
+          '1':
+            'name': 'meta.delimiter.property.period.ferret'
+          '3':
+            'name': 'constant.other.property.ferret'
+          '4':
+            'name': 'variable.other.property.ferret'
+      }
+    ]
+  'storage_types':
+    'patterns': [
+      {
+        'match': '\\bBool\\b'
+        'name': 'storage.type.boolean.ferret'
+      }
+      {
+        'match': '\\b(Object|Obj|Hash|List|Set)\\b'
+        'name': 'storage.type.collection.ferret'
+      }
+      {
+        'match': '\\b(Error|Err)\\b'
+        'name': 'storage.type.error.ferret'
+      }
+      {
+        'match': '\\b(String|Str)\\b'
+        'name': 'storage.type.string.ferret'
+      }
+      {
+        'match': '\\b(Number|Num)\\b'
+        'name': 'storage.type.numeric.ferret'
+      }
+
+    ]
   'variable':
     'patterns': [
       {
         'captures':
           '1':
             'name': 'punctuation.definition.variable.ferret'
-        'match': '([\\$\\@\\%](#)?)([a-zA-Zx7f-xff\\$]|::)([a-zA-Z0-9_x7f-xff\\$]|::)*\\b'
+        'match': '(@)([a-zA-Zx7f-xff\\$])([a-zA-Z0-9_x7f-xff\\$])*\\b'
+        'name': 'variable.other.readwrite.instance.ferret'
+      }
+      {
+        'captures':
+          '1':
+            'name': 'punctuation.definition.variable.ferret'
+        'match': '(\\$)([a-zA-Zx7f-xff\\$])([a-zA-Z0-9_x7f-xff\\$])*\\b'
         'name': 'variable.other.readwrite.global.ferret'
+      }
+      {
+        'captures':
+          '1':
+            'name': 'punctuation.definition.variable.ferret'
+        'match': '(\\*)([a-zA-Zx7f-xff\\$])([a-zA-Z0-9_x7f-xff\\$])*\\b'
+        'name': 'variable.other.readwrite.special.ferret'
       }
     ]
