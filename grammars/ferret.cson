@@ -12,14 +12,21 @@
     'include': '#variable'
   }
   {
-    'include': '#properties'
+    'include': '#property_period'
   }
   {
-    'comment': 'Object/hash keys and return pair keys'
+    'comment': 'Object/hash keys'
     'captures':
       '1':
         'name': 'constant.other.key.ferret'
-    'match': '\\b(\\w+)\\s*(?=(?:\\:|->))'
+    'match': '\\b(\\w+)(?=\\:)'
+  }
+  {
+    'comment': 'Return pair keys'
+    'captures':
+      '1':
+        'name': 'constant.other.key.ferret'
+    'match': '\\b(\\w+)\\s*(?=->)'
   }
   {
     'match': '(?<={)\\s*\\w+\\s*(?=})'
@@ -98,7 +105,7 @@
     'contentName': 'text.embedded.ferret'
   }
   {
-    'match': '(?<!->)\\b(continue|do|else|for|if|last|next|redo|return|until|while|switch|case)\\b'
+    'match': '(?<!->)\\b(continue|do|else|for|if|last|next|redo|return|until|while|switch|case|before|after)\\b'
     'name': 'keyword.control.ferret'
   }
   {
@@ -124,7 +131,7 @@
         'include': '#escaped_char'
       }
       {
-        'include': '#variable'
+        'include': '#variable_with_property'
       }
     ]
   }
@@ -253,7 +260,7 @@
         ]
       }
     ]
-  'properties':
+  'property_period':
    'patterns': [
       {
         'comment': '`prop` in `obj.prop`, `func().prop`'
@@ -261,15 +268,41 @@
         'captures':
           '1':
             'name': 'meta.delimiter.property.period.ferret'
-        # these are disabled because we don't want properties highlighted
-        #   '2':
-        #     'name': 'constant.other.property.ferret'
-        #   '3':
-        #     'name': 'constant.other.property.ferret'
-        #   '4':
-        #     'name': 'variable.other.property.ferret'
       }
    ]
+  'variable_with_property':
+    'patterns': [
+      {
+        'captures':
+          '1':
+            'name': 'punctuation.definition.variable.ferret'
+          '2':
+            'name': 'variable.other.property.ferret'
+        'match': '(@)([_a-zA-Zx7f-xff\\$])([_a-zA-Z0-9_x7f-xff\\$])+\\b((?:\\.)(?:(\\b\\d\\w+)|(?:[A-Z][A-Z0-9_$]*\\b\\$+)|(?:[\\w$]+)))*
+'
+        'name': 'variable.other.readwrite.instance.ferret'
+      }
+      {
+        'captures':
+          '1':
+            'name': 'punctuation.definition.variable.ferret'
+          '2':
+            'name': 'variable.other.property.ferret'
+        'match': '(\\$)([_a-zA-Zx7f-xff\\$])([_a-zA-Z0-9_x7f-xff\\$])+\\b((?:\\.)(?:(\\b\\d\\w+)|(?:[A-Z][A-Z0-9_$]*\\b\\$+)|(?:[\\w$]+)))*
+'
+        'name': 'variable.other.readwrite.global.ferret'
+      }
+      {
+        'captures':
+          '1':
+            'name': 'punctuation.definition.variable.ferret'
+          '2':
+            'name': 'variable.other.property.ferret'
+        'match': '(\\*)([_a-zA-Zx7f-xff\\$])([_a-zA-Z0-9_x7f-xff\\$])+\\b((?:\\.)(?:(\\b\\d\\w+)|(?:[A-Z][A-Z0-9_$]*\\b\\$+)|(?:[\\w$]+)))*
+'
+        'name': 'variable.other.readwrite.special.ferret'
+      }
+    ]
   'variable':
     'patterns': [
       {
