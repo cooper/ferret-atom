@@ -48,6 +48,10 @@
     'name': 'meta.module.ferret'
   }
   {
+    'match': '\\bend\\b'
+    'name': 'keyword.control.ferret'
+  }
+  {
     'captures':
       '1':
         'name': 'storage.type.func.ferret'
