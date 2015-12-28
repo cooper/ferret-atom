@@ -57,15 +57,21 @@
         'name': 'storage.type.func.ferret'
       '2':
         'name': 'entity.name.function.ferret'
-    'match': '\\b(func|method|prop)(?:\\s+([-a-zA-Z0-9_]+))?\\s*[^\\w\\{]'
+    'match': '\\b(func|method|prop(?:\\?)?)(?:\\?)?(?:\\s+([-a-zA-Z0-9_]+))?\\s*[^\\w\\{]'
     'name': 'meta.function.ferret'
   }
   {
     'captures':
       '1':
         'name': 'storage.type.func.ferret'
-    'match': '^\\s*(init|on|inside)\\b'
+    'match': '\\b(init|on)\\b'
     'name': 'meta.function.ferret'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'storage.type.other.ferret'
+    'match': '\\b(type)\\b'
   }
   {
     'begin': '^(?=(\\t| {4}))'
@@ -106,7 +112,7 @@
     'contentName': 'text.embedded.ferret'
   }
   {
-    'match': '(?<!->)\\b(continue|do|else|for|if|last|next|redo|return|until|while|switch|case|before|after|set)\\b'
+    'match': '(?<!->)\\b(continue|do|else|for|if|last|next|redo|return|until|while|switch|case|before|after|set|load|stop|inside)\\b'
     'name': 'keyword.control.ferret'
   }
   {
@@ -185,7 +191,7 @@
     'name': 'support.class.ferret'
   }
   {
-    'match': '(\\.)?(shift|unshift|pop|push|connect|proto|print|println|say|close)\\b(?=\\()'
+    'match': '(\\.)?(shift|unshift|pop|push|connect|proto|print|println|say|close|trimPrefix)\\b(?=\\()'
     'captures':
       '1':
         'name': 'meta.delimiter.method.period.ferret'
