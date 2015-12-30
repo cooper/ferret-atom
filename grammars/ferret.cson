@@ -101,10 +101,6 @@
     'name': 'constant.language.ferret'
   }
   {
-    'match': '\\b(__FILE__|__LINE__|__PACKAGE__)\\b'
-    'name': 'constant.language.ferret'
-  }
-  {
     'begin': '\\b(__DATA__|__END__)\\n?'
     'captures':
       '1':
@@ -112,7 +108,7 @@
     'contentName': 'text.embedded.ferret'
   }
   {
-    'match': '(?<!->)\\b(continue|do|else|for|if|last|next|redo|return|until|while|switch|case|before|after|set|load|stop|inside)\\b'
+    'match': '(?<!->)\\b(continue|do|else|for|if|last|next|redo|return|until|while|switch|case|before|after|load|stop|inside|can|isa|transform|satisfies)\\b'
     'name': 'keyword.control.ferret'
   }
   {
