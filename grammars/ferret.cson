@@ -71,7 +71,7 @@
     'captures':
       '1':
         'name': 'storage.type.other.ferret'
-    'match': '\\b(type)\\b'
+    'match': '\\b(type|alias)\\b'
   }
   {
     'begin': '^(?=(\\t| {4}))'
