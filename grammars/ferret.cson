@@ -1,7 +1,8 @@
 'scopeName': 'source.ferret'
 'name': 'Ferret'
 'fileTypes': [
-  'frt'
+  'frt',
+  'frtdoc'
 ]
 'firstLineMatch': '^#!.*\\bferret\\b'
 'patterns': [
@@ -108,7 +109,7 @@
     'contentName': 'text.embedded.ferret'
   }
   {
-    'match': '(?<!->)\\b(continue|do|else|for|if|last|next|redo|return|until|while|switch|case|before|after|load|stop|inside|can|isa|transform|satisfies)\\b'
+    'match': '(?<!->)\\b(continue|do|else|for|if|last|next|redo|return|until|while|switch|case|before|after|load|stop|fail|catch|throw|inside|can|isa|transform|satisfies)\\b'
     'name': 'keyword.control.ferret'
   }
   {
@@ -152,6 +153,31 @@
       {
         'match': '\\\\[\'\\\\]'
         'name': 'constant.character.escape.ferret'
+      }
+    ]
+  }
+  {
+    'begin': '(?<=\\(|\\{|~|&|\\||^)\\s*((\\/))'
+    'beginCaptures':
+      '1':
+        'name': 'string.regexp.find.ferret'
+      '2':
+        'name': 'punctuation.definition.string.ferret'
+    'end': '((\\1([egimosxradlupc]*)))(?=(\\s+\\S|\\s*[;\\,\\#\\{\\}\\)]|$))'
+    'endCaptures':
+      '1':
+        'name': 'string.regexp.find.ferret'
+      '2':
+        'name': 'punctuation.definition.string.ferret'
+      '3':
+        'name': 'keyword.control.regexp-option.ferret'
+    'contentName': 'string.regexp.find.ferret'
+    'patterns': [
+      {
+        'include': '#escaped_char'
+      }
+      {
+        'include': '#variable_with_property'
       }
     ]
   }
