@@ -113,7 +113,7 @@
     'name': 'keyword.control.ferret'
   }
   {
-    'match': '\\b(want|need|share|local)\\b'
+    'match': '\\b(want|need|share|var)\\b'
     'name': 'storage.modifier.ferret'
   }
   {
