@@ -190,7 +190,7 @@
         'name': 'entity.name.function.ferret'
   }
   {
-    'match': '\\b(dump|inspect|copy|say|print)\\b'
+    'match': '\\b(dump|inspect|copy|say|print|delete|weaken|detail)\\b'
     'name': 'support.function.ferret'
   }
   {
@@ -213,7 +213,15 @@
     'name': 'support.class.ferret'
   }
   {
-    'match': '(\\.)?(shift|unshift|pop|push|connect|proto|print|println|say|close|trimPrefix)\\b(?=\\()'
+    'match': '(\\.)?(shift|unshift|pop|push|connect|print|println|say|close|trimPrefix|hasPrefix|fill)\\b(?=\\()'
+    'captures':
+      '1':
+        'name': 'meta.delimiter.method.period.ferret'
+      '2':
+        'name': 'support.function.ferret'
+  }
+  {
+    'match': '(\\.)?(proto|lowercase|uppercase)'
     'captures':
       '1':
         'name': 'meta.delimiter.method.period.ferret'
@@ -297,8 +305,7 @@
             'name': 'punctuation.definition.variable.ferret'
           '2':
             'name': 'variable.other.property.ferret'
-        'match': '(@)([_a-zA-Zx7f-xff\\$])([_a-zA-Z0-9_x7f-xff\\$]*)+\\b((?:\\.)(?:(\\b\\d\\w+)|(?:[A-Z][A-Z0-9_$]*\\b\\$+)|(?:[\\w$]+)))*
-'
+        'match': '(@)([_a-zA-Zx7f-xff\\$])([_a-zA-Z0-9_x7f-xff\\$]*)+\\b((?:\\.)(?:(\\b\\d\\w+)|(?:[A-Z][A-Z0-9_$]*\\b\\$+)|(?:[\\w$]+)))*'
         'name': 'variable.other.readwrite.instance.ferret'
       }
       {
@@ -307,8 +314,7 @@
             'name': 'punctuation.definition.variable.ferret'
           '2':
             'name': 'variable.other.property.ferret'
-        'match': '(\\$)([_a-zA-Zx7f-xff\\$])([_a-zA-Z0-9_x7f-xff\\$]*)+\\b((?:\\.)(?:(\\b\\d\\w+)|(?:[A-Z][A-Z0-9_$]*\\b\\$+)|(?:[\\w$]+)))*
-'
+        'match': '(\\$)([_a-zA-Zx7f-xff\\$])([_a-zA-Z0-9_x7f-xff\\$]*)+\\b((?:\\.)(?:(\\b\\d\\w+)|(?:[A-Z][A-Z0-9_$]*\\b\\$+)|(?:[\\w$]+)))*'
         'name': 'variable.other.readwrite.global.ferret'
       }
       {
@@ -317,8 +323,7 @@
             'name': 'punctuation.definition.variable.ferret'
           '2':
             'name': 'variable.other.property.ferret'
-        'match': '(\\*)([_a-zA-Zx7f-xff\\$])([_a-zA-Z0-9_x7f-xff\\$]*)+\\b((?:\\.)(?:(\\b\\d\\w+)|(?:[A-Z][A-Z0-9_$]*\\b\\$+)|(?:[\\w$]+)))*
-'
+        'match': '(?<!\\.)(\\*)([_a-zA-Zx7f-xff\\$])([_a-zA-Z0-9_x7f-xff\\$]*)+\\b((?:\\.)(?:(\\b\\d\\w+)|(?:[A-Z][A-Z0-9_$]*\\b\\$+)|(?:[\\w$]+)))*'
         'name': 'variable.other.readwrite.special.ferret'
       }
     ]
@@ -342,7 +347,7 @@
         'captures':
           '1':
             'name': 'punctuation.definition.variable.ferret'
-        'match': '(\\*)([_a-zA-Zx7f-xff\\$])([_a-zA-Z0-9_x7f-xff\\$])*\\b'
+        'match': '(?<!\\.)(\\*)([_a-zA-Zx7f-xff\\$])([_a-zA-Z0-9_x7f-xff\\$])*\\b'
         'name': 'variable.other.readwrite.special.ferret'
       }
     ]
