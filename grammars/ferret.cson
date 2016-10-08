@@ -58,7 +58,7 @@
         'name': 'storage.type.func.ferret'
       '2':
         'name': 'entity.name.function.ferret'
-    'match': '\\b(func|method|prop(?:\\?)?)(?:\\?)?(?:\\s+([-a-zA-Z0-9_]+))?\\s*[^\\w\\{]'
+    'match': '\\b(func|method hook|method|prop(?:\\?)?)(?:\\?)?(?:\\s+([-a-zA-Z0-9_]+))?\\s*[^\\w\\{]'
     'name': 'meta.function.ferret'
   }
   {
@@ -109,7 +109,7 @@
     'contentName': 'text.embedded.ferret'
   }
   {
-    'match': '(?<!->)\\b(continue|do|else|for|if|last|next|redo|return|until|while|switch|case|before|after|load|stop|fail|catch|throw|inside|can|isa|transform|satisfies)\\b'
+    'match': '(?<!->)\\b(continue|do|else|for|in|if|last|next|redo|return|until|while|switch|case|before|after|load|stop|fail|catch|throw|inside|can|isa|transform|satisfies|gather|take)\\b'
     'name': 'keyword.control.ferret'
   }
   {
@@ -190,7 +190,7 @@
         'name': 'entity.name.function.ferret'
   }
   {
-    'match': '\\b(dump|inspect|copy|say|print|delete|weaken|detail)\\b'
+    'match': '\\b(dump|inspect|say|print|delete|weaken|detail)\\b'
     'name': 'support.function.ferret'
   }
   {
@@ -213,7 +213,7 @@
     'name': 'support.class.ferret'
   }
   {
-    'match': '(\\.)?(shift|unshift|pop|push|connect|print|println|say|close|trimPrefix|hasPrefix|fill)\\b(?=\\()'
+    'match': '(\\.)?(shift|unshift|pop|push|without|withoutAll|grep|map|first|any|all|remove|removeAll|connect|print|println|say|close|trimPrefix|trimSuffix|hasSuffix|hasPrefix|fill|word|fromWord|match|\\*instanceOf|\\*fitsType|\\*addParent|copy|setValue|getValue)\\b(?=\\(|!)'
     'captures':
       '1':
         'name': 'meta.delimiter.method.period.ferret'
@@ -221,7 +221,7 @@
         'name': 'support.function.ferret'
   }
   {
-    'match': '(\\.)?(proto|lowercase|uppercase)'
+    'match': '(\\.)?(proto|hashValue|lowercase|uppercase|result|empty|length|sum|sum0|lastIndex|even|odd|sqrt|cbrt|ceil|floor|round|square|name|signature|version|keys|values)'
     'captures':
       '1':
         'name': 'meta.delimiter.method.period.ferret'
@@ -326,6 +326,15 @@
         'match': '(?<!\\.)(\\*)([_a-zA-Zx7f-xff\\$])([_a-zA-Z0-9_x7f-xff\\$]*)+\\b((?:\\.)(?:(\\b\\d\\w+)|(?:[A-Z][A-Z0-9_$]*\\b\\$+)|(?:[\\w$]+)))*'
         'name': 'variable.other.readwrite.special.ferret'
       }
+      {
+        'captures':
+          '1':
+            'name': 'punctuation.definition.variable.ferret'
+          '2':
+            'name': 'variable.other.property.ferret'
+        'match': '(%)([_a-zA-Zx7f-xff\\$])([_a-zA-Z0-9_x7f-xff\\$]*)+\\b((?:\\.)(?:(\\b\\d\\w+)|(?:[A-Z][A-Z0-9_$]*\\b\\$+)|(?:[\\w$]+)))*'
+        'name': 'variable.other.readwrite.this.ferret'
+      }
     ]
   'variable':
     'patterns': [
@@ -349,5 +358,12 @@
             'name': 'punctuation.definition.variable.ferret'
         'match': '(?<!\\.)(\\*)([_a-zA-Zx7f-xff\\$])([_a-zA-Z0-9_x7f-xff\\$])*\\b'
         'name': 'variable.other.readwrite.special.ferret'
+      }
+      {
+        'captures':
+          '1':
+            'name': 'punctuation.definition.variable.ferret'
+        'match': '(%)([_a-zA-Zx7f-xff\\$])([_a-zA-Z0-9_x7f-xff\\$])*\\b'
+        'name': 'variable.other.readwrite.this.ferret'
       }
     ]
