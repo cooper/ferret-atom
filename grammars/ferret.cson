@@ -17,7 +17,7 @@
     'captures':
       '1':
         'name': 'constant.other.key.ferret'
-    'match': '\\b(\\w+)(?!\\:\\:)(?=\\:)'
+    'match': '(?<!\\.)\\b(\\w+)(?!\\:\\:)(?=\\:)'
   }
   {
     'comment': 'Return pair keys'
@@ -209,7 +209,7 @@
   }
   {
     'comment': 'Matches non-namespace words starting with a capital letter (class/type names)'
-    'match': '(?<!\\$)\\b(_?[A-Z]+[_a-zA-Z0-9_x7f-xff\\$]*)\\b'
+    'match': '(?<!\\$|\\.)\\b(_?[A-Z]+[_a-zA-Z0-9_x7f-xff\\$]*)\\b'
     'name': 'support.class.ferret'
   }
   {
