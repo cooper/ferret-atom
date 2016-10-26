@@ -17,14 +17,14 @@
     'captures':
       '1':
         'name': 'constant.other.key.ferret'
-    'match': '(?<!\\.)\\b(\\w+)(?!\\:\\:)(?=\\:)'
+    'match': '(?<!\\.)\\b(\\w+)\\b(?!\\:\\:)(?=\\:)'
   }
   {
     'comment': 'Return pair keys'
     'captures':
       '1':
         'name': 'constant.other.key.ferret'
-    'match': '\\b(\\w+)\\s*(?=->)'
+    'match': '\\b(\\w+)\\b\\s*(?=->)'
   }
   {
     'match': '(?<={)\\s*\\w+\\s*(?=})'
@@ -58,7 +58,7 @@
         'name': 'storage.type.func.ferret'
       '2':
         'name': 'entity.name.function.ferret'
-    'match': '\\b(func|method hook|method|prop(?:\\?)?)(?:\\?)?(?:\\s+([-a-zA-Z0-9_]+))?\\s*[^\\w\\{]'
+    'match': '\\b(func|method hook|method|prop(?:\\?)?)\\b(?:\\?)?(?:\\s+([-a-zA-Z0-9_]+))?\\s*[^\\w\\{]'
     'name': 'meta.function.ferret'
   }
   {
@@ -102,7 +102,7 @@
     'name': 'constant.language.ferret'
   }
   {
-    'begin': '\\b(__DATA__|__END__)\\n?'
+    'begin': '\\b(__DATA__|__END__)\\b\\n?'
     'captures':
       '1':
         'name': 'constant.language.ferret'
