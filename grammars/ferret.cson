@@ -230,7 +230,7 @@
         'name': 'support.function.ferret'
   }
   {
-    'match': '(\\.)?(proto|hashValue|lowercase|uppercase|result|empty|length|sum|sum0|lastIndex|even|odd|sqrt|cbrt|ceil|floor|round|square|name|signature|version|keys|values)'
+    'match': '(\\.)?\\b(proto|hashValue|lowercase|uppercase|result|empty|length|sum|sum0|lastIndex|even|odd|sqrt|cbrt|ceil|floor|round|square|name|signature|version|keys|values)\\b'
     'captures':
       '1':
         'name': 'meta.delimiter.method.period.ferret'
