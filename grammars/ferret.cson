@@ -213,7 +213,7 @@
     'name': 'support.class.ferret'
   }
   {
-    'match': '(\\.)?(shift|unshift|pop|push|without|withoutAll|grep|map|first|any|all|remove|removeAll|connect|print|println|say|close|trimPrefix|trimSuffix|hasSuffix|hasPrefix|fill|word|fromWord|match|\\*instanceOf|\\*fitsType|\\*addParent|copy|setValue|getValue)\\b(?=\\(|!)'
+    'match': '(\\.)?(shift|unshift|pop|push|without|withoutAll|grep|map|first|any|all|remove|removeAll|connect|print|println|say|close|trimPrefix|trimSuffix|hasSuffix|hasPrefix|fill|word|fromWord|match|\\*instanceOf|\\*fitsType|\\*addParent|copy|setValue|getValue|deleteValue|weakenValue)\\b(?=\\(|!)'
     'captures':
       '1':
         'name': 'meta.delimiter.method.period.ferret'
