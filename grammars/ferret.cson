@@ -213,7 +213,16 @@
     'name': 'support.class.ferret'
   }
   {
-    'match': '(\\.)?(shift|unshift|pop|push|without|withoutAll|grep|map|first|any|all|remove|removeAll|connect|print|println|say|close|trimPrefix|trimSuffix|hasSuffix|hasPrefix|fill|word|fromWord|match|\\*instanceOf|\\*fitsType|\\*addParent|copy|setValue|getValue|deleteValue|weakenValue)\\b(?=\\(|!)'
+    'match': '(\\.)?\\b(shift|unshift|pop|push|without|withoutAll|grep|map|first|any|all|remove|removeAll|connect|print|println|say|close|trimPrefix|trimSuffix|hasSuffix|hasPrefix|fill|word|fromWord|match|copy|setValue|getValue|deleteValue|weakenValue)\\b(?=\\(|!)'
+    'captures':
+      '1':
+        'name': 'meta.delimiter.method.period.ferret'
+      '2':
+        'name': 'support.function.ferret'
+  }
+  {
+    'comment': 'special methods'
+    'match': '(\\.)?(\\*\\b(?:instanceOf|fitsType|addParent)\\b)(?=\\(|!)'
     'captures':
       '1':
         'name': 'meta.delimiter.method.period.ferret'
