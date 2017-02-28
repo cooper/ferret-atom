@@ -65,7 +65,7 @@
     'captures':
       '1':
         'name': 'storage.type.func.ferret'
-    'match': '\\b(init|on)\\b'
+    'match': '\\b(init|on|operator)\\b'
     'name': 'meta.function.ferret'
   }
   {
