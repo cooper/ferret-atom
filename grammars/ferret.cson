@@ -58,7 +58,7 @@
         'name': 'storage.type.func.ferret'
       '2':
         'name': 'entity.name.function.ferret'
-    'match': '\\b(func|method hook|method|prop(?:\\?)?)\\b(?:\\?)?(?:\\s+([-a-zA-Z0-9_]+))?\\s*[^\\w\\{]'
+    'match': '\\b(func|method|hook|prop(?:\\?)?)\\b(?:\\?)?(?:\\s+([-a-zA-Z0-9_]+))?\\s*[^\\w\\{]'
     'name': 'meta.function.ferret'
   }
   {
