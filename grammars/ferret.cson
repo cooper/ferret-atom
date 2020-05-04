@@ -1,378 +1,433 @@
-'scopeName': 'source.ferret'
-'name': 'Ferret'
-'fileTypes': [
-  'frt',
+scopeName: 'source.ferret'
+name: 'Ferret'
+fileTypes: [
+  'frt'
   'frtdoc'
 ]
-'firstLineMatch': '^#!.*\\bferret\\b'
-'patterns': [
+firstLineMatch: '^#!.*\\bferret\\b'
+patterns: [
   {
-    'include': '#line_comment'
+    include: '#line_comment'
   }
   {
-    'include': '#variable'
+    include: '#variable'
   }
   {
-    'comment': 'Object/hash keys'
-    'captures':
+    comment: 'Object/hash keys'
+    captures:
       '1':
-        'name': 'constant.other.key.ferret'
-    'match': '(?<!\\.)\\b(\\w+)\\b(?!\\:\\:)(?=\\:)'
+        name: 'constant.other.key.ferret'
+    match: '(?<!\\.)\\b(\\w+)\\b(?!\\:\\:)(?=\\:)'
   }
   {
-    'comment': 'Return pair keys'
-    'captures':
+    comment: 'Return pair keys'
+    captures:
       '1':
-        'name': 'constant.other.key.ferret'
-    'match': '\\b(\\w+)\\b\\s*(?=->)'
+        name: 'constant.other.key.ferret'
+    match: '\\b(\\w+)\\b\\s*(?=->)'
   }
   {
-    'match': '(?<={)\\s*\\w+\\s*(?=})'
-    'name': 'constant.other.bareword.ferret'
+    match: '(?<={)\\s*\\w+\\s*(?=})'
+    name: 'constant.other.bareword.ferret'
   }
   {
-    'captures':
+    captures:
       '1':
-        'name': 'keyword.control.ferret'
+        name: 'keyword.control.ferret'
       '2':
-        'name': 'entity.name.type.class.ferret'
-    'match': '^\\s*(class)\\s+([^\\s;]+)'
-    'name': 'meta.class.ferret'
+        name: 'entity.name.type.class.ferret'
+    match: '^\\s*(class)\\s+([^\\s;]+)'
+    name: 'meta.class.ferret'
   }
   {
-    'captures':
+    captures:
       '1':
-        'name': 'keyword.control.ferret'
+        name: 'keyword.control.ferret'
       '2':
-        'name': 'entity.name.type.class.ferret'
-    'match': '^\\s*(package)\\s+([^\\s;]+)'
-    'name': 'meta.module.ferret'
+        name: 'entity.name.type.class.ferret'
+    match: '^\\s*(package)\\s+([^\\s;]+)'
+    name: 'meta.module.ferret'
   }
   {
-    'match': '\\bend\\b'
-    'name': 'keyword.control.ferret'
+    match: '\\bend\\b'
+    name: 'keyword.control.ferret'
   }
   {
-    'captures':
+    captures:
       '1':
-        'name': 'storage.type.func.ferret'
+        name: 'storage.type.func.ferret'
       '2':
-        'name': 'entity.name.function.ferret'
-    'match': '\\b(func|method|hook|prop(?:\\?)?)\\b(?:\\?)?(?:\\s+([-a-zA-Z0-9_]+))?\\s*[^\\w\\{]'
-    'name': 'meta.function.ferret'
+        name: 'entity.name.function.ferret'
+    match: '\\b(func|method|hook|type|alias|prop(?:\\?)?)\\b(?:\\?)?(?:\\s+([-a-zA-Z0-9_]+))?\\s*[^\\w\\{]'
+    name: 'meta.function.ferret'
   }
   {
-    'captures':
+    captures:
       '1':
-        'name': 'storage.type.func.ferret'
-    'match': '\\b(init|on|operator)\\b'
-    'name': 'meta.function.ferret'
+        name: 'storage.type.func.ferret'
+      '2':
+        name: 'entity.name.function.ferret'
+    match: '\\b(op)\\b\\s+(==|=~|[\\^%\\+\\-\\*/<>])+\\s*[^\\w\\{]'
+    name: 'meta.function.ferret'
   }
   {
-    'captures':
+    captures:
       '1':
-        'name': 'storage.type.other.ferret'
-    'match': '\\b(type|alias)\\b'
+        name: 'storage.type.func.ferret'
+    match: '\\b(init|on)\\b'
+    name: 'meta.function.ferret'
   }
   {
-    'begin': '^(?=(\\t| {4}))'
-    'end': '(?=[^\\t\\s])'
-    'name': 'meta.leading-tabs'
-    'patterns': [
+    captures:
+      '1':
+        name: 'entity.name.function.ferret'
+    comment: 'short-hand computed property or method'
+    match: '^(\\s*\\.[-a-zA-Z0-9_]+)+\\s*(\\->|\\{)'
+    name: 'meta.function.ferret'
+  }
+  {
+    begin: '^(?=(\\t| {4}))'
+    end: '(?=[^\\t\\s])'
+    name: 'meta.leading-tabs'
+    patterns: [
       {
-        'captures':
+        captures:
           '1':
-            'name': 'meta.odd-tab'
+            name: 'meta.odd-tab'
           '2':
-            'name': 'meta.even-tab'
-        'match': '(\\t| {4})(\\t| {4})?'
+            name: 'meta.even-tab'
+        match: '(\\t| {4})(\\t| {4})?'
       }
     ]
   }
   {
-    'match': '(?<!\\.)\\b(true|false)(?!\\s*:)\\b|(?<=\\?)(?:\\s*)(true|false)(?=\\s*:)'
-    'captures':
+    match: '(?<!\\.)\\b(true|false)(?!\\s*:)\\b|(?<=\\?)(?:\\s*)(true|false)(?=\\s*:)'
+    captures:
       '1':
-        'name': 'constant.language.boolean.$1.ferret'
+        name: 'constant.language.boolean.$1.ferret'
       '2':
-        'name': 'constant.language.boolean.$2.ferret'
+        name: 'constant.language.boolean.$2.ferret'
   }
   {
-    'match': '\\b(undefined)\\b'
-    'name': 'constant.language.ferret'
+    match: '\\b(undefined)\\b'
+    name: 'constant.language.ferret'
   }
   {
-    'begin': '\\b(__DATA__|__END__)\\b\\n?'
-    'captures':
+    begin: '\\b(__DATA__|__END__)\\b\\n?'
+    captures:
       '1':
-        'name': 'constant.language.ferret'
-    'contentName': 'text.embedded.ferret'
+        name: 'constant.language.ferret'
+    contentName: 'text.embedded.ferret'
   }
   {
-    'match': '(?<!->)\\b(continue|do|else|for|in|if|last|next|redo|return|until|while|switch|case|before|after|load|stop|fail|catch|throw|inside|can|isa|transform|satisfies|gather|take)\\b'
-    'name': 'keyword.control.ferret'
+    match: '(?<![>\\.\\*])\\b(continue|do|else|for|in|if|last|next|redo|defer|until|while|switch|case|before|after|load|stop|fail|catch|throw|inside|can|isa|transform|satisfies|gather|take)\\b'
+    name: 'keyword.control.ferret'
   }
   {
-    'match': '\\b(want|need|share|var)\\b'
-    'name': 'storage.modifier.ferret'
+    match: '\\->'
+    name: 'keyword.control.ferret'
   }
   {
-    'match': '(<=>|->)'
-    'name': 'keyword.operator.comparison.ferret'
+    match: '\\b(want|need|share|var)\\b'
+    name: 'storage.modifier.ferret'
   }
   {
-    'begin': '"'
-    'beginCaptures':
+    match: '(<=>|->)'
+    name: 'keyword.operator.comparison.ferret'
+  }
+  {
+    begin: '"'
+    beginCaptures:
       '0':
-        'name': 'punctuation.definition.string.begin.ferret'
-    'end': '"'
-    'endCaptures':
+        name: 'punctuation.definition.string.begin.ferret'
+    end: '"'
+    endCaptures:
       '0':
-        'name': 'punctuation.definition.string.end.ferret'
-    'name': 'string.quoted.double.ferret'
-    'patterns': [
+        name: 'punctuation.definition.string.end.ferret'
+    name: 'string.quoted.double.ferret'
+    patterns: [
       {
-        'include': '#escaped_char'
+        include: '#escaped_char'
       }
       {
-        'include': '#variable_with_property'
-      }
-    ]
-  }
-  {
-    'begin': '\''
-    'beginCaptures':
-      '0':
-        'name': 'punctuation.definition.string.begin.ferret'
-    'end': '\''
-    'endCaptures':
-      '0':
-        'name': 'punctuation.definition.string.end.ferret'
-    'name': 'string.quoted.single.ferret'
-    'patterns': [
-      {
-        'match': '\\\\[\'\\\\]'
-        'name': 'constant.character.escape.ferret'
+        include: '#variable_with_property'
       }
     ]
   }
   {
-    'begin': '(?<=\\(|\\{|~|&|\\||^)\\s*((\\/))'
-    'beginCaptures':
+    begin: '"'
+    beginCaptures:
+      '0':
+        name: 'punctuation.definition.string.begin.ferret'
+    end: '"'
+    endCaptures:
+      '0':
+        name: 'punctuation.definition.string.end.ferret'
+    name: 'string.quoted.single.ferret'
+    patterns: [
+      {
+        match: '\\\\["\\\\]'
+        name: 'constant.character.escape.ferret'
+      }
+    ]
+  }
+  {
+    begin: '(?<=\\(|\\{|~|&|\\||^)\\s*((\\/))'
+    beginCaptures:
       '1':
-        'name': 'string.regexp.find.ferret'
+        name: 'string.regexp.find.ferret'
       '2':
-        'name': 'punctuation.definition.string.ferret'
-    'end': '((\\1([egimosxradlupc]*)))(?=(\\s+\\S|\\s*[;\\,\\#\\{\\}\\)]|$))'
-    'endCaptures':
+        name: 'punctuation.definition.string.ferret'
+    end: '((\\1([egimosxradlupc]*)))(?=(\\s+\\S|\\s*[;\\,\\#\\{\\}\\)]|$))'
+    endCaptures:
       '1':
-        'name': 'string.regexp.find.ferret'
+        name: 'string.regexp.find.ferret'
       '2':
-        'name': 'punctuation.definition.string.ferret'
+        name: 'punctuation.definition.string.ferret'
       '3':
-        'name': 'keyword.control.regexp-option.ferret'
-    'contentName': 'string.regexp.find.ferret'
-    'patterns': [
+        name: 'keyword.control.regexp-option.ferret'
+    contentName: 'string.regexp.find.ferret'
+    patterns: [
       {
-        'include': '#escaped_char'
+        include: '#escaped_char'
       }
       {
-        'include': '#variable_with_property'
+        include: '#variable_with_property'
       }
     ]
   }
   {
-    'match': '\\b(x)\\s*(\\d+)\\b'
-    'captures':
+    match: '\\b(x)\\s*(\\d+)\\b'
+    captures:
       '1':
-        'name': 'support.function.ferret'
+        name: 'support.function.ferret'
       '2':
-        'name': 'entity.name.function.ferret'
+        name: 'entity.name.function.ferret'
   }
   {
-    'match': '\\b(dump|inspect|say|print|delete|weaken|detail)\\b'
-    'name': 'support.function.ferret'
+    match: '\\b(dump|inspect|delay|timeout|say|print|delete|weaken|detail)\\b'
+    name: 'support.function.ferret'
   }
   {
-    'comment': 'Mark as namespace separator if double colons followed by capital letter'
-    'match': '(::)\\s*(?=[A-Z])'
-    'captures':
+    comment: 'Mark as namespace separator if double colons followed by capital letter'
+    match: '(::)\\s*(?=[A-Z])'
+    captures:
       '1':
-        'name': 'punctuation.separator.namespace.ferret'
+        name: 'punctuation.separator.namespace.ferret'
   }
   {
-    'comment': 'Mark as method separator if double colons not followed by capital letter'
-    'match': '(::)\\s*(?![A-Z])'
-    'captures':
+    comment: 'Mark as method separator if double colons not followed by capital letter'
+    match: '(::)\\s*(?![A-Z])'
+    captures:
       '1':
-        'name': 'punctuation.separator.method.ferret'
+        name: 'punctuation.separator.method.ferret'
   }
   {
-    'comment': 'Matches non-namespace words starting with a capital letter (class/type names)'
-    'match': '(?<!\\$|\\.)\\b(_?[A-Z]+[_a-zA-Z0-9_x7f-xff\\$]*)\\b'
-    'name': 'support.class.ferret'
+    comment: 'Matches non-namespace words starting with a capital letter (class/type names)'
+    match: '(?<!\\$|\\.)\\b(_?[A-Z]+[_a-zA-Z0-9_x7f-xff\\$]*)\\b'
+    name: 'support.class.ferret'
   }
   {
-    'match': '(\\.)?\\b(shift|unshift|pop|push|without|withoutAll|grep|map|first|any|all|remove|removeAll|connect|print|println|say|close|trimPrefix|trimSuffix|hasSuffix|hasPrefix|fill|word|fromWord|match|copy|setValue|getValue|deleteValue|weakenValue)\\b(?=\\(|!)'
-    'captures':
+    comment: 'Support properties that do NOT require () or !'
+    match: '(\\.)?\\b(proto|init|hashValue|lowercase|uppercase|result|empty|length|sum|sum0|s|lastIndex|even|odd|sqrt|log|log10|exp|e|pi|cbrt|abs|ceil|floor|round|square|name|signature|version|keys|values|nextElement|nextElements|more|iterator|sin|asin|cos|acos|tan|atan|atan2|cot|sec|csc)\\b'
+    captures:
       '1':
-        'name': 'meta.delimiter.method.period.ferret'
+        name: 'meta.delimiter.method.period.ferret'
       '2':
-        'name': 'support.function.ferret'
+        name: 'support.function.ferret'
   }
   {
-    'comment': 'special methods'
-    'match': '(\\.)?(\\*\\b(?:instanceOf|fitsType|addParent)\\b)(?=\\(|!)'
-    'captures':
+    comment: 'Support functions/properties that are only highlighted as calls'
+    match: '(\\.)?\\b(shift|unshift|pop|push|without|withoutAll|grep|contains|indexOf|map|first|any|all|remove|removeAll|splice|split|reverse|flatten|root|logb|factorial|polar|connect|print|println|say|close|trimPrefix|trimSuffix|hasSuffix|hasPrefix|fill|word|fromWord|match|copy|join|setValue|getValue|deleteValue|weakenValue)\\b(?=\\(|!)'
+    captures:
       '1':
-        'name': 'meta.delimiter.method.period.ferret'
+        name: 'meta.delimiter.method.period.ferret'
       '2':
-        'name': 'support.function.ferret'
+        name: 'support.function.ferret'
   }
   {
-    'match': '(\\.)?\\b(proto|hashValue|lowercase|uppercase|result|empty|length|sum|sum0|lastIndex|even|odd|sqrt|cbrt|ceil|floor|round|square|name|signature|version|keys|values)\\b'
-    'captures':
+    comment: 'special methods'
+    match: '(\\.)?(\\*\\b(instanceOfClass|isa|addParent|instanceOfClass|get|getOwn|set|commonClass|fullName|addListener)\\b)(?=\\(|!)'
+    captures:
       '1':
-        'name': 'meta.delimiter.method.period.ferret'
+        name: 'meta.delimiter.method.period.ferret'
       '2':
-        'name': 'support.function.ferret'
+        name: 'support.function.special.ferret'
   }
   {
-    'captures':
+    comment: 'special properties (non-methods)'
+    match: '(\\.)?(\\*\\b(ISA|self|classes|ownProperties|allProperties|description|addr|generics)\\b)'
+    captures:
       '1':
-        'name': 'punctuation.definition.constant.ferret'
-    'comment': 'symbols'
-    'match': '(?<!:)(:)(?>[$a-zA-Z_]\\w*(?>[?!]|=(?![>=]))?|===?|<=>|>[>=]?|<[<=]?|[%&`/\\|]|\\*\\*?|=?~|[-+]@?|\\[\\]=?|@@?[a-zA-Z_]\\w*)'
-    'name': 'constant.other.symbol.ferret'
+        name: 'meta.delimiter.method.period.ferret'
+      '2':
+        name: 'support.function.special.ferret'
+  }
+  {
+    comment: 'numbers'
+    captures:
+      '1':
+        name: 'constant.numeric.imaginary.ferret'
+    match: '\\b((?:0(?:x|X)[0-9a-fA-F]*)|(?:(?:\\d+\\.?\\d*)|(?:\\.\\d+))(?:(?:e|E)(?:\\+|-)?\\d+)?)(i?)\\b'
+    name: 'constant.numeric.ferret'
+  }
+  {
+    comment: 'numbers'
+    match: '\\bi\\b'
+    name: 'constant.numeric.imaginary.ferret'
+  }
+  {
+    captures:
+      '1':
+        name: 'punctuation.definition.constant.ferret'
+    comment: 'symbols'
+    match: '(:)([\\p{L}_]+[\\p{N}\\p{L}_]*)'
+    name: 'constant.other.symbol.ferret'
   }
 ]
-'repository':
-  'escaped_char':
-    'patterns': [
+repository:
+  escaped_char:
+    patterns: [
       {
-        'match': '\\\\\\d+'
-        'name': 'constant.character.escape.ferret'
+        match: '\\\\\\d+'
+        name: 'constant.character.escape.ferret'
       }
       {
-        'match': '\\\\c[^\\s\\\\]'
-        'name': 'constant.character.escape.ferret'
+        match: '\\\\c[^\\s\\\\]'
+        name: 'constant.character.escape.ferret'
       }
       {
-        'match': '\\\\g(?:\\{(?:\\w*|-\\d+)\\}|\\d+)'
-        'name': 'constant.character.escape.ferret'
+        match: '\\\\g(?:\\{(?:\\w*|-\\d+)\\}|\\d+)'
+        name: 'constant.character.escape.ferret'
       }
       {
-        'match': '\\\\k(?:\\{\\w*\\}|<\\w*>|\'\\w*\')'
-        'name': 'constant.character.escape.ferret'
+        match: '\\\\k(?:\\{\\w*\\}|<\\w*>|"\\w*")'
+        name: 'constant.character.escape.ferret'
       }
       {
-        'match': '\\\\N\\{[^\\}]*\\}'
-        'name': 'constant.character.escape.ferret'
+        match: '\\\\N\\{[^\\}]*\\}'
+        name: 'constant.character.escape.ferret'
       }
       {
-        'match': '\\\\o\\{\\d*\\}'
-        'name': 'constant.character.escape.ferret'
+        match: '\\\\o\\{\\d*\\}'
+        name: 'constant.character.escape.ferret'
       }
       {
-        'match': '\\\\(?:p|P)(?:\\{\\w*\\}|P)'
-        'name': 'constant.character.escape.ferret'
+        match: '\\\\(?:p|P)(?:\\{\\w*\\}|P)'
+        name: 'constant.character.escape.ferret'
       }
       {
-        'match': '\\\\x(?:[0-9a-zA-Z]{2}|\\{\\w*\\})?'
-        'name': 'constant.character.escape.ferret'
+        match: '\\\\x(?:[0-9a-zA-Z]{2}|\\{\\w*\\})?'
+        name: 'constant.character.escape.ferret'
       }
       {
-        'match': '\\\\.'
-        'name': 'constant.character.escape.ferret'
+        match: '\\\\.'
+        name: 'constant.character.escape.ferret'
       }
     ]
-  'line_comment':
-    'patterns': [
+  line_comment:
+    patterns: [
       {
-        'begin': '(^[ \\t]+)?(?=#)'
-        'beginCaptures':
+        begin: '(^[ \\t]+)?(?=#)'
+        beginCaptures:
           '1':
-            'name': 'punctuation.whitespace.comment.leading.ferret'
-        'end': '(?!\\G)'
-        'patterns': [
+            name: 'punctuation.whitespace.comment.leading.ferret'
+        end: '(?!\\G)'
+        patterns: [
           {
-            'begin': '#'
-            'beginCaptures':
+            begin: '#'
+            beginCaptures:
               '0':
-                'name': 'punctuation.definition.comment.ferret'
-            'end': '\\n'
-            'name': 'comment.line.number-sign.ferret'
+                name: 'punctuation.definition.comment.ferret'
+            end: '\\n'
+            name: 'comment.line.number-sign.ferret'
           }
         ]
       }
     ]
-  'variable_with_property':
-    'patterns': [
+  variable_with_property:
+    patterns: [
       {
-        'captures':
+        captures:
           '1':
-            'name': 'punctuation.definition.variable.ferret'
+            name: 'punctuation.definition.variable.ferret'
           '2':
-            'name': 'variable.other.property.ferret'
-        'match': '(@)([\\p{L}_]+[\\p{N}\\p{L}_]*)+\\b((?:\\.)(?:(\\b\\d\\w+)|(?:[A-Z][A-Z0-9_$]*\\b\\$+)|(?:[\\w$]+)))*'
-        'name': 'variable.other.readwrite.instance.ferret'
+            name: 'variable.other.property.ferret'
+        match: '(@)([\\p{L}_]+[\\p{N}\\p{L}_]*)+\\b((?:\\.)(?:(\\b\\d\\w+)|(?:[A-Z][A-Z0-9_$]*\\b\\$+)|(?:[\\w$]+)))*'
+        name: 'variable.other.readwrite.instance.ferret'
       }
       {
-        'captures':
+        captures:
           '1':
-            'name': 'punctuation.definition.variable.ferret'
+            name: 'punctuation.definition.variable.ferret'
           '2':
-            'name': 'variable.other.property.ferret'
-        'match': '(\\$)([\\p{L}_]+[\\p{N}\\p{L}_]*)+\\b((?:\\.)(?:(\\b\\d\\w+)|(?:[A-Z][A-Z0-9_$]*\\b\\$+)|(?:[\\w$]+)))*'
-        'name': 'variable.other.readwrite.global.ferret'
+            name: 'variable.other.property.ferret'
+        match: '(\\$)([\\p{L}_]+[\\p{N}\\p{L}_]*)+\\b((?:\\.)(?:(\\b\\d\\w+)|(?:[A-Z][A-Z0-9_$]*\\b\\$+)|(?:[\\w$]+)))*'
+        name: 'variable.other.readwrite.global.ferret'
       }
       {
-        'captures':
+        captures:
           '1':
-            'name': 'punctuation.definition.variable.ferret'
+            name: 'variable.language.ferret'
           '2':
-            'name': 'variable.other.property.ferret'
-        'match': '(?<!\\.)(\\*)([\\p{L}_]+[\\p{N}\\p{L}_]*)+\\b((?:\\.)(?:(\\b\\d\\w+)|(?:[A-Z][A-Z0-9_$]*\\b\\$+)|(?:[\\w$]+)))*'
-        'name': 'variable.other.readwrite.special.ferret'
+            name: 'punctuation.definition.variable.ferret'
+        match: '(?<!\\.)((\\*)self|this|scope|return|class|argv|file|line)\\b((?:\\.)(?:(\\b\\d\\w+)|(?:[A-Z][A-Z0-9_$]*\\b\\$+)|(?:[\\w$]+)))*'
+        name: 'variable.other.readwrite.special.ferret'
       }
       {
-        'captures':
+        captures:
           '1':
-            'name': 'punctuation.definition.variable.ferret'
+            name: 'punctuation.definition.variable.ferret'
           '2':
-            'name': 'variable.other.property.ferret'
-        'match': '(%)([\\p{L}_]+[\\p{N}\\p{L}_]*)+\\b((?:\\.)(?:(\\b\\d\\w+)|(?:[A-Z][A-Z0-9_$]*\\b\\$+)|(?:[\\w$]+)))*'
-        'name': 'variable.other.readwrite.this.ferret'
+            name: 'variable.other.property.ferret'
+        match: '(?<!\\.)(\\*)([\\p{L}_]+[\\p{N}\\p{L}_]*)+\\b((?:\\.)(?:(\\b\\d\\w+)|(?:[A-Z][A-Z0-9_$]*\\b\\$+)|(?:[\\w$]+)))*'
+        name: 'variable.other.readwrite.special.ferret'
+      }
+      {
+        captures:
+          '1':
+            name: 'punctuation.definition.variable.ferret'
+          '2':
+            name: 'variable.other.property.ferret'
+        match: '(%)([\\p{L}_]+[\\p{N}\\p{L}_]*)+\\b((?:\\.)(?:(\\b\\d\\w+)|(?:[A-Z][A-Z0-9_$]*\\b\\$+)|(?:[\\w$]+)))*'
+        name: 'variable.other.readwrite.this.ferret'
       }
     ]
-  'variable':
-    'patterns': [
+  variable:
+    patterns: [
       {
-        'captures':
+        captures:
           '1':
-            'name': 'punctuation.definition.variable.ferret'
-        'match': '(@)([\\p{L}_]+[\\p{N}\\p{L}_]*)'
-        'name': 'variable.other.readwrite.instance.ferret'
+            name: 'punctuation.definition.variable.ferret'
+        match: '(@)([\\p{L}_]+[\\p{N}\\p{L}_]*)'
+        name: 'variable.other.readwrite.instance.ferret'
       }
       {
-        'captures':
+        captures:
           '1':
-            'name': 'punctuation.definition.variable.ferret'
-        'match': '(\\$)([\\p{L}_]+[\\p{N}\\p{L}_]*)'
-        'name': 'variable.other.readwrite.global.ferret'
+            name: 'punctuation.definition.variable.ferret'
+        match: '(\\$)([\\p{L}_]+[\\p{N}\\p{L}_]*)'
+        name: 'variable.other.readwrite.global.ferret'
       }
       {
-        'captures':
+        captures:
           '1':
-            'name': 'punctuation.definition.variable.ferret'
-        'match': '(?<!\\.)(\\*)([\\p{L}_]+[\\p{N}\\p{L}_]*)'
-        'name': 'variable.other.readwrite.special.ferret'
+            name: 'punctuation.definition.variable.ferret'
+        match: '(?<!\\.)(\\*)(self|this|scope|return|class|argv|file|line)'
+        name: 'variable.language.ferret'
       }
       {
-        'captures':
+        captures:
           '1':
-            'name': 'punctuation.definition.variable.ferret'
-        'match': '(%)([\\p{L}_]+[\\p{N}\\p{L}_]*)'
-        'name': 'variable.other.readwrite.this.ferret'
+            name: 'punctuation.definition.variable.ferret'
+        match: '(?<!\\.)(\\*)([\\p{L}_]+[\\p{N}\\p{L}_]*)'
+        name: 'variable.other.readwrite.special.ferret'
+      }
+      {
+        captures:
+          '1':
+            name: 'punctuation.definition.variable.ferret'
+        match: '(%)([\\p{L}_]+[\\p{N}\\p{L}_]*)'
+        name: 'variable.other.readwrite.this.ferret'
       }
     ]
